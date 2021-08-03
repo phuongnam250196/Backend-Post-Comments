@@ -1,7 +1,5 @@
 import  { MongoCommon } from "./../../lib/mongodb";
-import { Helpers } from "../../lib/helper";
 const MongoData = new MongoCommon();
-const helper = new Helpers();
 
 export class PostMongoBase {
     constructor(db) {
@@ -11,7 +9,7 @@ export class PostMongoBase {
 
     async listPost() {
         const docs = await this.col_post.find({}).toArray();
-        return helper.FormatCMTime(MongoData.Many(docs));
+        return MongoData.Many(docs);
     }
 
     async getPost(id) {
@@ -19,7 +17,7 @@ export class PostMongoBase {
         if (!doc) {
             return `${id} not found`;
         }
-        return helper.CMtime(MongoData.One(doc));
+        return MongoData.One(doc);
     }
 
     async createPost(post) {
