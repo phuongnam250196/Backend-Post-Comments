@@ -44,6 +44,10 @@ export class PostServiceBase {
             post.content = params.content;
             post.mtime = now;
         }
+        if (params.comments) {
+            post.comments = params.comments;
+            post.mtime = now;
+        }
         const doc = await this.PostMongo.updatePost(post);
         return doc;
     }

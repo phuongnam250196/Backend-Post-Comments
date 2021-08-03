@@ -36,6 +36,9 @@ export function NewPostAPI(PostService) {
         if (req.body.content) {
             params.content = req.body.content
         }
+        if (req.body.comments) {
+            params.comments = req.body.comments
+        }
         const doc = await PostService.updatePost(id, params);
         res.json(doc);
     })
